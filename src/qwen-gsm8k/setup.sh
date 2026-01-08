@@ -21,9 +21,14 @@ if ! command -v conda &> /dev/null; then
     exit 1
 fi
 
+# Accept conda TOS if needed
+echo "[0/5] Accepting conda Terms of Service..."
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main 2>/dev/null || true
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r 2>/dev/null || true
+
 # Create conda environment
 echo "[1/5] Creating conda environment..."
-conda create -n verl python=3.12 -y
+conda create -n verl python=3.10 -y
 source $(conda info --base)/etc/profile.d/conda.sh
 conda activate verl
 
