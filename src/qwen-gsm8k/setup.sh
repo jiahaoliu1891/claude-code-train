@@ -8,6 +8,13 @@ echo "=========================================="
 echo "Setting up verl environment for GRPO training"
 echo "=========================================="
 
+# Source conda from Lambda Labs location
+if [ -f "/opt/miniconda/etc/profile.d/conda.sh" ]; then
+    source /opt/miniconda/etc/profile.d/conda.sh
+elif [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+    source /opt/miniconda3/etc/profile.d/conda.sh
+fi
+
 # Check if conda is available
 if ! command -v conda &> /dev/null; then
     echo "Error: conda not found. Lambda Stack should have it pre-installed."
